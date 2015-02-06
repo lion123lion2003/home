@@ -1,0 +1,9 @@
+alias ct 'cleartool'
+
+alias pwd     'echo $cwd'       # This is faster than executing the pwd
+alias ll      'ls -la'
+alias screen      'screen -A'
+alias screen.ssh 'screen -T vt100 ssh'
+alias screen.rsh 'screen -T vt100 rsh'
+alias screen.rlogin 'screen -T vt100 rlogin'
+alias h 'history'

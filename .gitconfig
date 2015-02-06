@@ -1,0 +1,10 @@
+[user]
+	name = lion123lion2003
+	email = lion123lion2003@126.com
+[http]
+[core]
+[merge]
+	tool = vimdiff
+[remote "origin"]
+[push]
+	default = current
