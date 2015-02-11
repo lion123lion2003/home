@@ -33,12 +33,14 @@ Plugin 'honza/vim-snippets'
 "Plugin 'Shougo/neosnippet.vim'
 "Plugin 'Shougo/neocomplcache.vim'
 Plugin 'vim-scripts/taglist.vim'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'tpope/vim-rails'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'jlanzarotta/bufexplorer'
+Plugin 'bling/vim-bufferline'
+"Plugin 'bling/vim-airline'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-rails'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 Plugin 'L9'
@@ -99,7 +101,6 @@ endif
 "-----------------------------------------------------------------------------
 set linespace=1         " space it out a little more (easier to read)
 set wildmenu            " type :h and press <Tab> to look what happens
-set ruler               " always show current position along the bottom
 set cmdheight=2         " use 2 screen lines for command-line
 set lazyredraw          " do not redraw while executing macros (much faster)
 "set number              " don't print line number
@@ -124,7 +125,9 @@ set scrolloff=3         " minimal number of screen lines to keep above/below the
 set novisualbell        " use visual bell instead of beeping
 set noerrorbells        " do not make noise
 set laststatus=2        " always show the status line
-set listchars=tab:\|\ ,trail:.,extends:>,precedes:<,eol:$ " how :set list show
+"set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+"set statusline=%<%n\ %f\ %h%m%r%=%-14.(%l,%c%V%)\ %y[%{&ff},%{strlen(&fenc)?&fenc:'none'}%{(&bomb?\",BOM\":\"\")}:%b,%B]\ %P
+set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %y[%{&ff},%{strlen(&fenc)?&fenc:'none'}%{(&bomb?\",BOM\":\"\")}:%b,%B]\ %P
 "set statusline=%{VimBuddy()}\ %F%m%r%h%w\ [%{&ff}]\ [%Y]\ [\%03.3b\ \%02.2B]\ [%02v\ %03l\ %L\ %p%%]
                         " need vimbuddy.vim, dislike it? just remove it
 
