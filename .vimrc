@@ -105,7 +105,7 @@ set cmdheight=2         " use 2 screen lines for command-line
 set lazyredraw          " do not redraw while executing macros (much faster)
 "set number              " don't print line number
 set hid                 " allow to change buffer without saving
-set ruler               "Always show current position
+set ruler               "Always show current position in stausline
 set backspace=2         " make backspace work normal
 "set whichwrap+=<,>,h,l  " allow backspace and cursor keys to wrap
 "set mouse=a             " use mouse in all modes
