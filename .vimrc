@@ -9,6 +9,10 @@ so ~/.exrc
 set nocompatible        " use vim as vim, should be put at the very start
 filetype off                  " required
 
+" install Vundle
+" mkdir -p ~/.vim/bundle
+" git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -23,22 +27,77 @@ Plugin 'gmarik/Vundle.vim'
 
 " plugin on GitHub repo
 "Plugin 'tpope/vim-fugitive'
-"Plugin 'Valloric/YouCompleteMe'
-Plugin 'vim-scripts/AutoComplPop'
+
+" This library provides some utility functions. There isn't much need to
+" install it unless another plugin requires you to do so.
 Plugin 'tomtom/tlib_vim'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'garbas/vim-snipmate'
-"Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+
+" A code-complation engine which support many languages
+" Ensure that Vim is at least 7.3.584 and that it has support for python2 scripting
+"Plugin 'Valloric/YouCompleteMe'
+
+" It provides keyword completion system by maintaining a cache of keywords in
+" the current buffer.
+" requires Vim 7.3.885+ with Lua enabled
+"Plugin 'Shougo/neocomplete.vim'
+
+" contains neocomplete snippets source
 "Plugin 'Shougo/neosnippet.vim'
-"Plugin 'Shougo/neocomplcache.vim'
+
+" autocomplete
+Plugin 'vim-scripts/AutoComplPop'
+
+" python autocomplete
+Plugin 'davidhalter/jedi-vim'
+
+" SnipMate aims to provide support for textual snippets, similar to TextMate or
+" other Vim plugins like UltiSnips. For example, in C, typing for<tab> could be
+" expanded to
+"    for (i = 0; i < count; i++) {
+"       /* code */
+"    }
+Plugin 'garbas/vim-snipmate'
+
+" This repository contains snippets files for various programming languages.
+Plugin 'honza/vim-snippets'
+
+" features likes vim-snipmate. It needs python. Its fast and has the most features
+"Plugin 'SirVer/ultisnips'
+
+" Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)
 Plugin 'vim-scripts/taglist.vim'
+
+" various utils such as caching interpreted contents of files or advanced glob
+" like things
+Plugin 'MarcWeber/vim-addon-mw-utils'
+
+" A filesystem tree explorer plugin for vim
 Plugin 'scrooloose/nerdtree'
+
+" plugin for intensely orgasmic commenting
 Plugin 'scrooloose/nerdcommenter'
+
+" NERDTree and tabs together in Vim, painlessly
 Plugin 'jistr/vim-nerdtree-tabs'
+
+" BufExplorer Plugin for Vim
 Plugin 'jlanzarotta/bufexplorer'
+
+" super simple vim plugin to show the list of buffers in the command bar
 Plugin 'bling/vim-bufferline'
+
+" Lean & mean status/tabline for vim that's light as air
+" integrates with variety of plugins
+" Supports 7.2 as the minimum Vim version
 "Plugin 'bling/vim-airline'
+
+" Full path fuzzy file, buffer, mru, tag, ... finder for Vim
+Plugin 'kien/ctrlp.vim'
+
+" syntax checker for all kinds of programming languages
+Plugin 'scrooloose/syntastic'
+
+" Vim/Ruby Configuration Files
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
 
@@ -50,6 +109,7 @@ Plugin 'L9'
 
 " git repos on your local machine (i.e. when working on your own plugin)
 "Plugin 'file:///home/gmarik/path/to/plugin'
+
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
 "Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -127,7 +187,7 @@ set noerrorbells        " do not make noise
 set laststatus=2        " always show the status line
 "set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 "set statusline=%<%n\ %f\ %h%m%r%=%-14.(%l,%c%V%)\ %y[%{&ff},%{strlen(&fenc)?&fenc:'none'}%{(&bomb?\",BOM\":\"\")}:%b,%B]\ %P
-set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %y[%{&ff},%{strlen(&fenc)?&fenc:'none'}%{(&bomb?\",BOM\":\"\")}:%b,%B]\ %P
+set statusline=%<%f\ %h%m%r%=%-14.(%l/%L,%c%V%)\ %y[%{&ff},%{strlen(&fenc)?&fenc:'none'}%{(&bomb?\",BOM\":\"\")}:%b,%B]\ %P
 "set statusline=%{VimBuddy()}\ %F%m%r%h%w\ [%{&ff}]\ [%Y]\ [\%03.3b\ \%02.2B]\ [%02v\ %03l\ %L\ %p%%]
                         " need vimbuddy.vim, dislike it? just remove it
 
@@ -149,9 +209,9 @@ set formatoptions+=mM   " thus vim can reformat multibyte text (e.g. Chinese)
 set textwidth=80
 
 "-----------------------------------------------------------------------------
-" When editing a file, always jump to the last known cursor position. 
-" Don't do it when the position is invalid or when inside an event handler 
-" (happens when dropping a file on gvim). 
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid or when inside an event handler
+" (happens when dropping a file on gvim).
 "-----------------------------------------------------------------------------
 autocmd BufReadPost * 
 \ if line("'\"") > 0 && line("'\"") <= line("$") | 
@@ -174,7 +234,6 @@ au BufWinEnter * silent! loadview
 autocmd Syntax c,cpp,vim,xml,html,xhtml,js,php,py,python,rb,ruby,erb,eruby set foldmethod=manual
 autocmd Syntax c,cpp,vim,xml,html,xhtml,perl normal zR
 
-
 "-----------------------------------------------------------------------------
 " keymaps
 "-----------------------------------------------------------------------------
@@ -185,9 +244,12 @@ if &term == 'xterm'
     set <C-Left>=[D
 endif
 if &term == 'screen'
-    set <C-Right>=[C
-    set <C-Left>=[D
+"    set <C-Right>=[C
+"    set <C-Left>=[D
+    set <C-Right>=[1;5C
+    set <C-Left>=[1;5D
 endif
+
 "  press Ctrl-Left or Ctrl-Right to go to the previous or next tabs, and can
 "  press Alt-Left or Alt-Right to move the current tab to the left or right.
 "nnoremap <C-Left> :tabprevious<CR>
@@ -198,15 +260,16 @@ endif
 " alternately executes :tab ball and :tabo)
 "let notabs = 0
 "nnoremap <silent> <F8> :let notabs=!notabs<Bar>:if notabs<Bar>:tabo<Bar>:else<Bar>:tab ball<Bar>:tabn<Bar>:endif<CR>
-"
+
 "Useful when moving accross long lines
 nnoremap j gj
 nnoremap k gk
-"
+
 "The <Leader> key is mapped to \ by default. So if you have a map of <Leader>t, you can execute it by default with \t
 nnoremap <silent> <leader><cr> :nohlsearch<cr>
 " GRB: clear the search buffer when hitting return
 nnoremap <CR> :nohlsearch<CR>/<BS>
+
 " select buffer to edit
 nnoremap <leader>b :ls<CR>:buffer<Space>
 " Close the current buffer
@@ -216,14 +279,15 @@ nnoremap <leader>ba :1,300 bdelete!<cr>
 " Moving buffer using CTRL+ the arrows
 nnoremap <C-Right> :bn<CR>
 nnoremap <C-Left> :bp<CR>
+
 " Tab configuration
 nnoremap <leader>tn :tabnew! %<cr>
 nnoremap <leader>te :tabedit 
 nnoremap <leader>tc :tabclose<cr>
 nnoremap <leader>tm :tabmove 
+
 " When pressing <leader>cd switch to the directory of the open buffer
 nnoremap <leader>cd :cd %:p:h<cr>
-
 
 "-----------------------------------------------------------------------------
 " autocmd
@@ -239,6 +303,7 @@ autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php,ctp set omnifunc=phpcomplete#CompletePHP
 autocmd FileType vim set omnifunc=syntaxcomplete#Complete
+
 " markdown
 au BufEnter,Bufread *.mkd,*.md,*.mdown,*.markdown set tw=0
 " HTML (tab width 2 chr, no wrapping)
@@ -263,12 +328,15 @@ autocmd FileType ruby set sts=2
 autocmd FileType eruby set sw=2
 autocmd FileType eruby set ts=2
 autocmd FileType eruby set sts=2
+
 "remove trailing whitespace
 "http://vim.wikia.com/wiki/Remove_unwanted_spaces#Automatically_removing_all_trailing_whitespace
 autocmd BufWritePre *.c :%s/\s\+$//e
 autocmd BufWritePre *.cpp :%s/\s\+$//e
 autocmd BufWritePre *.c++ :%s/\s\+$//e
+autocmd BufWritePre *.cc :%s/\s\+$//e
 autocmd BufWritePre *.h :%s/\s\+$//e
+autocmd BufWritePre *.hpp :%s/\s\+$//e
 autocmd BufWritePre *.java :%s/\s\+$//e
 autocmd BufWritePre *.php :%s/\s\+$//e
 autocmd BufWritePre *.pl :%s/\s\+$//e
@@ -276,11 +344,12 @@ autocmd BufWritePre *.pm :%s/\s\+$//e
 autocmd BufWritePre *.py :%s/\s\+$//e
 autocmd BufWritePre *.rb :%s/\s\+$//e
 autocmd BufWritePre *.erb :%s/\s\+$//e
+
 " tabs, not spaces for php, ctp
 au BufEnter,BufRead *.php,*.ctp,Makefile* set noexpandtab
+
 " reload .vimrc when it is changed
 autocmd BufWritePost .vimrc source %
-
 
 "-----------------------------------------------------------------------------
 " other settings
