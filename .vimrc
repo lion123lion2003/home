@@ -101,6 +101,9 @@ Plugin 'scrooloose/syntastic'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
 
+" Vim for rust-lang
+Plugin 'rust-lang/rust.vim'
+
 " plugin from http://vim-scripts.org/vim/scripts.html
 Plugin 'L9'
 
