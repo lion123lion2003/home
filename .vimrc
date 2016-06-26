@@ -48,7 +48,8 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'vim-scripts/AutoComplPop'
 
 " python autocomplete
-Plugin 'davidhalter/jedi-vim'
+" require vim compiled with python2 or python3
+"Plugin 'davidhalter/jedi-vim'
 
 " SnipMate aims to provide support for textual snippets, similar to TextMate or
 " other Vim plugins like UltiSnips. For example, in C, typing for<tab> could be
@@ -103,6 +104,14 @@ Plugin 'tpope/vim-rails'
 
 " Vim for rust-lang
 Plugin 'rust-lang/rust.vim'
+
+" CoffeeScript
+Plugin 'kchmck/vim-coffee-script'
+" Json
+Plugin 'elzr/vim-json'
+
+" Nodejs
+Plugin 'moll/vim-node'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 Plugin 'L9'
@@ -234,7 +243,7 @@ autocmd BufReadPost *
 set viewoptions=folds
 au BufWinLeave * silent! mkview
 au BufWinEnter * silent! loadview
-autocmd Syntax c,cpp,vim,xml,html,xhtml,js,php,py,python,rb,ruby,erb,eruby set foldmethod=manual
+autocmd Syntax c,cpp,vim,xml,html,xhtml,js,json,php,py,python,rb,ruby,erb,eruby set foldmethod=manual
 autocmd Syntax c,cpp,vim,xml,html,xhtml,perl normal zR
 
 "-----------------------------------------------------------------------------
@@ -301,6 +310,7 @@ autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown,ctp set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType json set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
@@ -323,6 +333,10 @@ autocmd FileType xhtml set textwidth=0
 autocmd FileType css set sw=2
 autocmd FileType css set ts=2
 autocmd FileType css set sts=2
+" json
+autocmd FileType json set sw=2
+autocmd FileType json set ts=2
+autocmd FileType json set sts=2
 " Ruby
 autocmd FileType ruby set sw=2
 autocmd FileType ruby set ts=2
@@ -360,3 +374,5 @@ autocmd BufWritePost .vimrc source %
 "set guifont=Monospace\ 13
 set guifont=Liberation_Mono:h12:cANSI
 
+"set for Plugin 'elzr/vim-json'
+let g:vim_json_syntax_conceal = 0
