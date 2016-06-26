@@ -113,6 +113,9 @@ Plugin 'elzr/vim-json'
 " Nodejs
 Plugin 'moll/vim-node'
 
+" Vue.js
+Plugin 'posva/vim-vue'
+
 " plugin from http://vim-scripts.org/vim/scripts.html
 Plugin 'L9'
 
