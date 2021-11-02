@@ -1,0 +1,34 @@
+! Xterm configurations
+xterm*VT100*geometry: 81x28
+xterm*VT100*charClass: 34:48,43:48,45-47:48,126:48,128-65535:48
+xterm*VT100.translations: #override <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
+!xterm*VT100.translations: #override   \
+!        Shift<Btn1Down>:                select-start() \n\
+!        Shift<Btn1Motion>:              select-extend() \n\
+!        Shift<Btn1Up>:                  select-end(CLIPBOARD) \n\
+!        Shift<Btn2Up>:                  insert-selection(CLIPBOARD) \n\
+!        Shift<Btn3Down>:                start-extend() \n\
+!        Shift<Btn3Motion>:              select-extend() \n\
+!        Shift<BtnUp>:                   select-end(CLIPBOARD) \n
+xterm*font: -misc-fixed-medium-r-normal--20-200-75-75-c-100-iso8859-1
+xterm*faceName: DejaVu Sans Mono:style=Book:antialias=false
+xterm*faceNameDoublesize: WenQuanYi Zen Hei Mono:antialias=false
+xterm*faceSize: 12
+xterm*background: black
+xterm*foreground: white
+xterm*loginShell: true
+xterm*scrollBar: true
+xterm*rightScrollBar: true
+xterm*title: XTerm
+xterm*iconName: XTerm
+xterm*saveLines: 4096
+xterm*jumpScroll: true
+xterm*scrollTtyOutput: false
+xterm*scrollKey: true
+xterm*alwaysUseMods: true
+xterm*metaSendsEscape: true
+xterm*utf8Title: true 
+xterm*locale: true
+xterm*bellIsUrgent: true
+xterm*scaleHeight: 1.1
+xterm*borderWidth: 0
