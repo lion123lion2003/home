@@ -57,26 +57,36 @@ Plugin 'vim-scripts/AutoComplPop'
 "    for (i = 0; i < count; i++) {
 "       /* code */
 "    }
-Plugin 'garbas/vim-snipmate'
+"Plugin 'garbas/vim-snipmate'
 
 " This repository contains snippets files for various programming languages.
-Plugin 'honza/vim-snippets'
+"Plugin 'honza/vim-snippets'
 
 " features likes vim-snipmate. It needs python. Its fast and has the most features
 "Plugin 'SirVer/ultisnips'
 
 " Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)
-Plugin 'vim-scripts/taglist.vim'
+"Plugin 'vim-scripts/taglist.vim'
+Plugin 'yegappan/taglist'
+
+Plugin 'vim-scripts/Conque-GDB'
+Plugin 'cpiger/NeoDebug'
+Plugin 'bfrg/vim-cpp-modern'
+Plugin 'nvie/vim-nox'
+"Plugin 'ycm-core/YouCompleteMe'
+Plugin 'liuchengxu/vista.vim'
+Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'tpope/vim-vinegar'
 
 " various utils such as caching interpreted contents of files or advanced glob
 " like things
 Plugin 'MarcWeber/vim-addon-mw-utils'
 
 " A filesystem tree explorer plugin for vim
-Plugin 'scrooloose/nerdtree'
+Plugin 'preservim/nerdtree'
 
 " plugin for intensely orgasmic commenting
-Plugin 'scrooloose/nerdcommenter'
+Plugin 'preservim/nerdcommenter'
 
 " NERDTree and tabs together in Vim, painlessly
 Plugin 'jistr/vim-nerdtree-tabs'
@@ -93,10 +103,10 @@ Plugin 'bling/vim-bufferline'
 "Plugin 'bling/vim-airline'
 
 " Full path fuzzy file, buffer, mru, tag, ... finder for Vim
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 " syntax checker for all kinds of programming languages
-Plugin 'scrooloose/syntastic'
+Plugin 'vim-syntastic/syntastic'
 
 " Vim/Ruby Configuration Files
 Plugin 'vim-ruby/vim-ruby'
@@ -118,6 +128,15 @@ Plugin 'posva/vim-vue'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 Plugin 'L9'
+
+" plugin to format git comment messages
+Plugin 'tpope/vim-git'
+
+" powershell
+Plugin 'PProvost/vim-ps1'
+
+" toml
+Plugin 'cespare/vim-toml'
 
 " Git plugin not hosted on GitHub
 "Plugin 'git://git.wincent.com/command-t.git'
@@ -228,10 +247,10 @@ set textwidth=80
 " Don't do it when the position is invalid or when inside an event handler
 " (happens when dropping a file on gvim).
 "-----------------------------------------------------------------------------
-autocmd BufReadPost * 
-\ if line("'\"") > 0 && line("'\"") <= line("$") | 
-\ exe "normal g`\"" | 
-\ endif 
+autocmd BufReadPost *
+\ if line("'\"") > 0 && line("'\"") <= line("$") |
+\ exe "normal g`\"" |
+\ endif
 
 "-----------------------------------------------------------------------------
 " folding
@@ -255,14 +274,14 @@ autocmd Syntax c,cpp,vim,xml,html,xhtml,perl normal zR
 " map <C-Right> and <C-Left> in term
 " http://vim.1045645.n5.nabble.com/How-to-map-CTRL-Right-Arrow-td4838722.html
 if &term == 'xterm'
-    set <C-Right>=[C
-    set <C-Left>=[D
+    set <C-Right>=
+    set <C-Left>=
 endif
 if &term == 'screen'
-"    set <C-Right>=[C
-"    set <C-Left>=[D
-    set <C-Right>=[1;5C
-    set <C-Left>=[1;5D
+"    set <C-Right>=
+"    set <C-Left>=
+    set <C-Right>=
+    set <C-Left>=
 endif
 
 "  press Ctrl-Left or Ctrl-Right to go to the previous or next tabs, and can
@@ -297,9 +316,9 @@ nnoremap <C-Left> :bp<CR>
 
 " Tab configuration
 nnoremap <leader>tn :tabnew! %<cr>
-nnoremap <leader>te :tabedit 
+nnoremap <leader>te :tabedit
 nnoremap <leader>tc :tabclose<cr>
-nnoremap <leader>tm :tabmove 
+nnoremap <leader>tm :tabmove
 
 " When pressing <leader>cd switch to the directory of the open buffer
 nnoremap <leader>cd :cd %:p:h<cr>
@@ -379,3 +398,7 @@ set guifont=Liberation_Mono:h12:cANSI
 
 "set for Plugin 'elzr/vim-json'
 let g:vim_json_syntax_conceal = 0
+
+"https://clang.llvm.org/docs/ClangFormat.html
+"map <C-K> :pyf d:/dev/llvm-project-13.0.0.src/clang/tools/clang-format/clang-format.py<cr>
+"imap <C-K> <c-o>:pyf d:/dev/llvm-project-13.0.0.src/clang/tools/clang-format/clang-format.py<<cr>
